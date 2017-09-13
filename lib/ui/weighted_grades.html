@@ -1,0 +1,16 @@
+  <body>
+    <canvas id="myCanvas" width="400" height="400"></canvas>
+    <script>
+      var canvas = document.getElementById('myCanvas');
+      var context = canvas.getContext('2d');
+
+      context.beginPath();
+      context.arc(200, 200, 100, 0, 1.5 * Math.PI, false);
+      context.closePath();
+      context.lineWidth = 5;
+      context.fillStyle = 'green';
+      context.fill();
+      context.strokeStyle = '#550000';
+      context.stroke();
+    </script>
+  </body>
