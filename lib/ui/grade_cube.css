@@ -1,0 +1,11 @@
+  * { margin: 0px; padding: 0px; }
+  body { font-family: "Helvetica" }
+  h1 { font-size: 72px; text-align: center; margin: 10px 0; }
+  h2 { display: inline-block; width: 200px; }
+  input { width: 200px; }
+  button { width: 620px; font-size: 36px; margin: 20px 0; 
+    background: none; 
+    border: 1px solid grey;
+    border-radius: 10px; }
+  .warning { color: red; background-color: #fdd; }
+  
