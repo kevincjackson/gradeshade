@@ -2,10 +2,14 @@
   body { font-family: "Helvetica" }
   h1 { font-size: 72px; text-align: center; margin: 10px 0; }
   h2 { display: inline-block; width: 200px; }
+  h2.weight, h2.grade { display: inline-block; width: 120px; }
+  h2#weightSum { width: 120px; }
   input { width: 200px; }
+  select { width: 120px; }
   button { width: 620px; font-size: 36px; margin: 20px 0; 
     background: none; 
     border: 1px solid grey;
     border-radius: 10px; }
   .warning { color: red; background-color: #fdd; }
+  .pointsRatio { width: 200px; display: inline-block; text-align: right; }
   
