@@ -37,4 +37,24 @@
  
   .warning { color: red; background-color: #fdd; }
   .pointsRatio { width: 200px; display: inline-block; text-align: right; }
+
+  #graph {
+    position: relative;
+    display: inline-block;
+    margin: 0 20px 40px 20px;
+    width: 300px;
+    height: 300px;
+    background: #eee;
+    border: 10px solid black;
+
+  }
+  #graph div.bar {
+    position: absolute;
+    background: grey;
+    width: 50px;
+    height: 50px;
+    left: 0px;
+    bottom: 0px;
+    overflow: hidden;
+  }
   

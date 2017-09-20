@@ -8,16 +8,20 @@
 <script src="preload.js"></script> 
 </head>
 <body>
+  <span>GradeCube v0.0</span>
+  <button onclick="GradeCube.Test.clearAssignments()">Clear All Assignments</button>
+  <button onclick="GradeCube.Test.testSetup()">Test Setup</button>
+  <hr>
 
   <h1>Grade Cube Says: <span id="gradeCubeSays">A</span></h1>
 
-  <form id="assignments" action="#">
+  <div id="assignments">
 
     <div>
       <h2>Assignment</h2>
       <h2 class="weight">Weight %</h2>
       <h2 class="grade">Grade</h2>
-      <h2 class="pointsRatio">Earned / Poss</h2>
+      <h2 class="pointsRatio">earn / pos</h2>
       <button id="gear">&#9881;</button>
     </div>
 
@@ -175,8 +179,13 @@
     <button id="add"> + </button>
     <button id="done"> Done </button>
 
-  </form>
+  </div><!--closes form-->
+
+  <div id="graph">
+  </div>
   
 <script src="grade_cube.js"></script>
+<script src="graph.js"></script>
+<script src="test.js"></script>
 </body>
 </html>
