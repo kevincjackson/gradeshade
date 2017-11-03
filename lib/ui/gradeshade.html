@@ -3,15 +3,13 @@
 <head>
 <title>Grade Cube</title>
 <meta charset="utf-8">                      
-<link rel="stylesheet" href="grade_cube.css" type="text/css">
+<link rel="stylesheet" href="gradeshade.css" type="text/css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
-<script src="preload.js"></script> 
 </head>
 <body>
-  <span>GradeCube v0.0</span>
-  <button onclick="GradeCube.Test.clearAssignments()">Clear All Assignments</button>
-  <button onclick="GradeCube.Test.testSetup()">Test Setup</button>
-  <button onclick="GradeCube.Test.onTheBubble()">On The Bubble Setup</button>
+  <span>Gradeshade v0.0</span>
+  <button onclick="Gradeshade.Examples.basic()">Basic Example</button>
+  <button onclick="Gradeshade.Examples.onTheBubble()">On The Bubble Example</button>
   <hr>
 
   <h1>Grade Cube Says: <span id="gradeCubeSays">A</span></h1>
@@ -166,7 +164,7 @@
         <option value='0'>0</option>"
       </select>
       <span class="pointsRatio"></span>
-      <button class="delete" onclick="GradeCube.HTML.delete_parent_div(this)"> X </button>
+      <button class="delete" onclick="Gradeshade.deleteAssignment(this)"> x </button>
     </div>
 
     <div id="totals">
@@ -185,8 +183,6 @@
   <div id="graph">
   </div>
   
-<script src="grade_cube.js"></script>
-<script src="graph.js"></script>
-<script src="test.js"></script>
+<script src="gradeshade.js"></script>
 </body>
 </html>
