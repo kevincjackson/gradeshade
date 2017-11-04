@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker|Rock+Salt');
+
+* { margin: 0; padding: 0; }
+body, input, button {  font-family: 'Rock Salt', cursive; }
+
+/******************************************************************************/
+/*********************************** HEADER ***********************************/
+/******************************************************************************/
+
+header {
+  background-color: black;
+  color: white;
+}
+
+header #logo { 
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  font-size: 0.50em; 
+  border: 1px solid white;
+  border-radius: 5px;
+}
+header a:link, 
+header a:visited {
+  color: white;
+  text-decoration: none;
+}
+
+h1 { 
+  font-size: 2.5em; 
+  text-align: center; 
+}
+
+/******************************************************************************/
+/***********************************   NAV  ***********************************/
+/******************************************************************************/
+
+#nav {
+  text-align: center;
+}
+
+#nav button {
+  margin: 0; padding: 0;
+  background-color: transparent;
+  border: 0px solid transparent;
+  font-size: 1em;
+  color: grey;
+}
+
+#nav a:link, 
+#nav a:visited {
+  font-size: 1em;
+  color: grey;
+  text-decoration: none;
+}
+/******************************************************************************/
+/***********************************  FORM  ***********************************/
+/******************************************************************************/
+
+#form {
+  display:inline-block;
+  width: 460px;
+  height: 460px;
+  /* margin: 0px auto 20px auto; */
+  padding: 20px 20px;
+  border: 1px solid black; 
+  border-radius: 20px;
+  overflow: scroll;
+}
+
+h2 { 
+  display: inline-block; 
+  width: 200px; 
+  font-size: 1em;
+}
+
+h2.weight, 
+h2.grade { 
+  display: inline-block; 
+  width: 120px; 
+}
+
+h2#weightSum { width: 120px; }
+
+input { 
+  width: 200px; 
+  line-height: 1.25em;
+}
+
+select { 
+  width: 120px; 
+}
+
+button#gear { 
+  /* margin-left: 15px; */
+  background: none;
+  border: none;
+  font-size: 20px; 
+}
+
+button#add, 
+button#done { 
+  display: block;
+  width: 100%;
+  margin: 20px auto; 
+  font-size: 1.5em;
+  background: none; 
+  border: 1px solid grey;
+  border-radius: 20px; 
+}
+button#done { display: none; }
+button#done, button.delete {  /* Colors only */
+  color: red;
+  background-color: #FEE;
+}
+button.delete { 
+  display: inline-block;
+  display: none; 
+  width: 20px; 
+  margin: 0 10px;
+  background-color: #FEE;
+  border: 1px solid grey;
+  border-radius: 10px; 
+}
+
+.warning { color: red; background-color: #fdd; }
+.pointsRatio { width: 200px; display: inline-block; text-align: right; }
+
+/******************************************************************************/
+/*********************************** GRAPH ************************************/
+/******************************************************************************/
+
+#graphSection {
+  display: inline-block;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 20px;
+}
+
+#graph {
+  position: relative;
+  display: inline-block;;
+  /* margin: 0 20px 40px 20px; */
+  /* margin: 0 20px 40px 20px; */
+  margin: 0 auto 40px auto;
+  /* margin: 0 0 40px 0; */
+  width: 300px;
+  height: 300px;
+  background: black;
+  border: 10px solid grey;
+
+}
+#graph div.bar {
+  position: absolute;
+  background: white;
+  width: 50px;
+  height: 50px;
+  left: 0px;
+  bottom: 0px;
+  overflow: hidden;
+}
+
