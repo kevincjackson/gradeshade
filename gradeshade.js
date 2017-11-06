@@ -5,8 +5,12 @@ Gradeshade.HTML = {};
 Gradeshade.Assignments = {};
 Gradeshade.Assignment = {};
 Gradeshade.Assignment.count = 1;
+Gradeshade.deleteMode = false;
 Gradeshade.Grade = {};
 
+////////////////////////////////////////////////////////////////////////////////
+// READY FUNCTION
+////////////////////////////////////////////////////////////////////////////////
 jQuery(function(){
 //////////////////////////////////////////////////////////////////////////////// 
 // Constants
@@ -14,28 +18,18 @@ jQuery(function(){
 Gradeshade.Constants = {
     MAX_FONT_SIZE: 36,
     MIN_FONT_SIZE: 12,
-    FONT_DELTA:    24, // 36-12
-    WEIGHTS: 
-        [ 0,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100 ],
-    GRADES: [ "", 
-        110, 109, 108, 107, 106, 105, 104, 103, 102, 101, 100,  
-              99,  98,  97,  96,  95,  94,  93,  92,  91,  90, 
-              89,  88,  87,  86,  85,  84,  83,  82,  81,  80, 
-              79,  78,  77,  76,  75,  74,  73,  72,  71,  70, 
-              69,  68,  67,  66,  65,  64,  63,  62,  61,  60, 
-              59,  58,  57,  56,  55,  54,  53,  52,  51,  50, 
-              49,  48,  47,  46,  45,  44,  43,  42,  41,  40, 
-              39,  38,  37,  36,  35,  34,  33,  32,  31,  30, 
-              29,  28,  27,  26,  25,  24,  23,  22,  21,  20, 
-              19,  18,  17,  16,  15,  14,  13,  12,  11,  10,
-               9,   8,   7,   6,   5,   4,   3,   2,   1,   0 ],
     AFFIRMATIONS: [ 
       "You got this.", 
       "Might as well aim high.", 
       "(Hopefully.)", 
       "Rock star you are!", 
-      "Let's do this." ]
+      "Let's do this." 
+    ]
 }
+
+// *Must* define outside of Constants instantion.
+Gradeshade.Constants.FONT_DELTA = 
+  (Gradeshade.Constants.MAX_FONT_SIZE - Gradeshade.Constants.MIN_FONT_SIZE);
 
 ////////////////////////////////////////////////////////////////////////////////o
     
@@ -93,28 +87,6 @@ Gradeshade.gradeWeighted = function( num, weight ) {
     return  (num * weight / 100).toFixed( 1 )
 }
 
-Gradeshade.htmlOptionTag = function( option ) { 
-    return "<option value=" + "'" + option + "'" + ">" + option + "</option>" 
-}
-
-
-Gradeshade.HTML.options = function( options ) {
-    var acc = []
-    for (i in options) {
-      acc.push( Gradeshade.htmlOptionTag( options[i] ) )
-    }
-    // acc = acc.join( "\n" )
-    return acc
-}
-
-Gradeshade.HTML.gradeOptions = Gradeshade.HTML.options( 
-    Gradeshade.Constants.GRADES
-)
-
-Gradeshade.HTML.weightOptions = Gradeshade.HTML.options( 
-    Gradeshade.Constants.WEIGHTS 
-)
-
 Gradeshade.Assignment.weightedFont = function( num ) {
     var delta = Gradeshade.Constants.FONT_DELTA * num / 100
     var ret = (Gradeshade.Constants.MIN_FONT_SIZE + delta) + "px"
@@ -149,11 +121,24 @@ Gradeshade.HTML.randomAffirmation = function() {
     return newAff
 }
                 
+Gradeshade.aboutHandler = function() {
+  if ( !$("#aboutRow").is(":visible") ) {
+      $("#aboutRow").slideDown(100);
+  }
+  else  {
+      $("#aboutRow").slideUp(1000);
+  }
+};
 
-Gradeshade.deleteAssignment = function(e) { 
-    $(e).parent("div").remove() 
-    if ( $("div.assignment").length == 0 ) {
-        $( "button#edit" ).click()
+Gradeshade.startOver = function() {
+  window.location= "./gradeshade.html"
+}
+
+Gradeshade.HTML.deleteAssignment = function( obj ) { 
+    $( obj ).parent("div").remove() 
+    if ( $("div.assignment").length <= 0 ) {
+      Gradeshade.deleteMode = false;
+      Gradeshade.startOver()
     }
     Gradeshade.draw() // You have to manually call this. 
 } 
@@ -166,24 +151,30 @@ Gradeshade.deleteAssignments = function() {
 
 Gradeshade.HTML.new_assignment = function() {
     var ret = `
-    <div class="assignment" id="assignment` + ++Gradeshade.Assignment.count + `">` +
-      `
-        <input class="name leftColumn"   type="text" placeholder="?" value="">
-        <select class="weight middleColumn">
-      ` + Gradeshade.HTML.weightOptions +
-      `
-        </select>
-        <select class="grade rightColumn">` +
-            Gradeshade.HTML.gradeOptions +
-      `
-        </select>
-        <span class="pointsRatio"></span>
-      ` +
-        // <button class="delete" onclick="Gradeshade.deleteAssignment(this)"> x </button>
+        <div class="assignment" id="assignment` + ++Gradeshade.Assignment.count + `">` +
+          `
+            <input class="name leftColumn leftColumnWide" type="text" placeholder="?" value="">
+            <select class="weight middleColumn">
+              <option value='0'>0</option><option value='5'>5</option><option value='10'>10</option><option value='15'>15</option><option value='20'>20</option><option value='25'>25</option><option value='30'>30</option><option value='35'>35</option><option value='40'>40</option><option value='45'>45</option><option value='50'>50</option><option value='55'>55</option><option value='60'>60</option><option value='65'>65</option><option value='70'>70</option><option value='75'>75</option><option value='80'>80</option><option value='85'>85</option><option value='90'>90</option><option value='95'>95</option><option value='100'>100</option>
+            </select>
+            <select class="grade rightColumn">
+              <option value=''></option>
+              <option value='110'>110</option><option value='109'>109</option><option value='108'>108</option><option value='107'>107</option><option value='106'>106</option><option value='105'>105</option><option value='104'>104</option><option value='103'>103</option><option value='102'>102</option><option value='101'>101</option>
+              <option value='100'>100</option><option value='99'>99</option><option value='98'>98</option><option value='97'>97</option><option value='96'>96</option><option value='95'>95</option><option value='94'>94</option><option value='93'>93</option><option value='92'>92</option><option value='91'>91</option>
+              <option value='90'>90</option><option value='89'>89</option><option value='88'>88</option><option value='87'>87</option><option value='86'>86</option><option value='85'>85</option><option value='84'>84</option><option value='83'>83</option><option value='82'>82</option><option value='81'>81</option>
+              <option value='80'>80</option><option value='79'>79</option><option value='78'>78</option><option value='77'>77</option><option value='76'>76</option><option value='75'>75</option><option value='74'>74</option><option value='73'>73</option><option value='72'>72</option><option value='71'>71</option>
+              <option value='70'>70</option><option value='69'>69</option><option value='68'>68</option><option value='67'>67</option><option value='66'>66</option><option value='65'>65</option><option value='64'>64</option><option value='63'>63</option><option value='62'>62</option><option value='61'>61</option>
+              <option value='60'>60</option><option value='59'>59</option><option value='58'>58</option><option value='57'>57</option><option value='56'>56</option><option value='55'>55</option><option value='54'>54</option><option value='53'>53</option><option value='52'>52</option><option value='51'>51</option>
+              <option value='50'>50</option><option value='49'>49</option><option value='48'>48</option><option value='47'>47</option><option value='46'>46</option><option value='45'>45</option><option value='44'>44</option><option value='43'>43</option><option value='42'>42</option><option value='41'>41</option>
+              <option value='40'>40</option><option value='39'>39</option><option value='38'>38</option><option value='37'>37</option><option value='36'>36</option><option value='35'>35</option><option value='34'>34</option><option value='33'>33</option><option value='32'>32</option><option value='31'>31</option>
+              <option value='30'>30</option><option value='29'>29</option><option value='28'>28</option><option value='27'>27</option><option value='26'>26</option><option value='25'>25</option><option value='24'>24</option><option value='23'>23</option><option value='22'>22</option><option value='21'>21</option>
+              <option value='20'>20</option><option value='19'>19</option><option value='18'>18</option><option value='17'>17</option><option value='16'>16</option><option value='15'>15</option><option value='14'>14</option><option value='13'>13</option><option value='12'>12</option><option value='11'>11</option>
+              <option value='10'>10</option><option value='9'>9</option><option value='8'>8</option><option value='7'>7</option><option value='6'>6</option><option value='5'>5</option><option value='4'>4</option><option value='3'>3</option><option value='2'>2</option><option value='1'>1</option><option value='0'>0</option>
+            </select>
+            <span class='pointsRatio'></span>
+            <button class='deleteButton' onclick='Gradeshade.HTML.deleteAssignment(this)'>X</button> 
+        </div>
     `
-    </div>
-    `
-    
   return ret
 }
 
@@ -192,8 +183,7 @@ Gradeshade.HTML.pointsRatioPresent = function() {
      var weight = $(this).parent(".assignment").children(".weight").val()
      var earned = Gradeshade.gradeWeighted( grade, weight ) 
      earned = isNaN( earned ) ? "?" : earned
-     var ret = "" + earned + " / " + weight
-     return ret
+     return "<sup>" + earned + "</sup>&frasl;<sub>" + weight + "</sub>"
 }
 
 Gradeshade.Graph = {
@@ -203,14 +193,14 @@ Gradeshade.Graph = {
         var name = $( assg ).children( "input.name").val();
         var width = $( assg ).children( "select.weight" ).val() * unit/100;
         var height = $( assg ).children( "select.grade" ).val() * unit/100;
-
+        var pointsRatio = $( assg ).children( "span.pointsRatio" ).html()
         var barId = $( assg ).attr("id") + "_bar"
         var barHTML = '<div class="bar" '  + 'id=' + '"' + barId + '"' +  '></div>'
 
         $("#graph").append( barHTML )
         var bar = $( "#" + barId )
 
-        bar.html( name )
+        bar.html( name + "<br>" + pointsRatio )
         bar.css( "left", left )
         bar.width( width )
         bar.height( height )
@@ -270,28 +260,22 @@ Gradeshade.Graph = {
     }
 
     Gradeshade.HTML.deleteModeToggle = function() {
-////////////////////////////////////////////////////////////////////////////////
-// TEMPORARILY DISABLE WHILE DOING STYLE
-////////////////////////////////////////////////////////////////////////////////
-      
-        // if ( $("div.assignment").length == 0 ) {
-        //   $("button#done").hide()
-        //   $("button#add").show()
-        //   return
-        // }
+        Gradeshade.deleteMode = !Gradeshade.deleteMode;
 
-        // $("button.delete").toggle()
-        // $("button#add").toggle()
-        // $("button#done").toggle()
-    }
+        // Convenience - automatically exit deleteMode
+        //   if there's no more assignments.
+        if ( $("div.assignment").length <= 0 ) {
+          Gradeshade.deleteMode = false;
+          Gradeshade.startOver()
+        }
+
+        Gradeshade.draw()
+    };
 
     Gradeshade.finish_basic_page = function() {
 
-        $("button#edit").click( Gradeshade.HTML.deleteModeToggle )
-        $("button#done").click( Gradeshade.HTML.deleteModeToggle )
-
-        $("button#add").on( "click", function() {
-            $("#totals").before( Gradeshade.HTML.new_assignment )
+        $("#addButton").on( "click", function() {
+            $("#formTop").append( Gradeshade.HTML.new_assignment )
             $("input.name").last().focus()
             Gradeshade.draw()
         })
@@ -337,10 +321,11 @@ Gradeshade.Graph = {
         return ret
     }
 
-    Gradeshade.draw = function() {
+////////////////////////////////////////////////////////////////////////////////
+// DRAW
+////////////////////////////////////////////////////////////////////////////////
 
-        // Hide edit if there are no assignments.
-        $("div.assignment").length == 0 ? $("#edit").hide() : $("#edit").show()
+    Gradeshade.draw = function() {
 
         // Force the default weight entry of 0
         $(".weight").each( function() {
@@ -356,7 +341,26 @@ Gradeshade.Graph = {
                 return ret
             })
         })
-        $("button.delete").css("font-size", "1em")
+
+        // MAYBE
+        // TODO subtract from above instead of fixing right now...
+        $(".deleteButton").css("font-size", "10px")
+
+        // DELETE MODE
+        if (Gradeshade.deleteMode) {
+          $(".leftColumn").removeClass("leftColumnWide")
+          $(".leftColumn").addClass("leftColumnNarrow")
+          $(".deleteButton").show()
+          $("#editUI").show()
+          $("#normalUI").hide()
+        }
+        else {
+          $(".leftColumn").removeClass("leftColumnNarrow")
+          $(".leftColumn").addClass("leftColumnWide")
+          $(".deleteButton").hide()
+          $("#editUI").hide()
+          $("#normalUI").show()
+        }
 
         $("#weightSum").html( Gradeshade.Assignments.weightSum() )
 
@@ -364,8 +368,7 @@ Gradeshade.Graph = {
             (Gradeshade.Assignments.weightSum() != 100) 
         ) 
 
-
-        // $("span.pointsRatio").html( Gradeshade.HTML.pointsRatioPresent )
+        $("span.pointsRatio").html( Gradeshade.HTML.pointsRatioPresent )
 
         
         $("#currentPoints").html( 
@@ -388,29 +391,33 @@ Gradeshade.Graph = {
 
 //}) // Closes ready function. Don't delete
 
+////////////////////////////////////////////////////////////////////////////////
+// EXAMPLES
+////////////////////////////////////////////////////////////////////////////////
 
 Gradeshade.Examples = {
 // Example: Basic - student has multiple weighted assignments.
     basic: function() {
         Gradeshade.deleteAssignments()
         Gradeshade.Assignment.count = 0;
+        Gradeshade.deleteMode = false;
 
-        $("#totals").before( Gradeshade.HTML.new_assignment )
+        $("#formTop").append( Gradeshade.HTML.new_assignment )
         $("#assignment1 input.name").val("Final")
         $("#assignment1 select.weight").val(40)
         $("#assignment1 select.grade").val(85)
 
-        $("#totals").before( Gradeshade.HTML.new_assignment )
+        $("#formTop").append( Gradeshade.HTML.new_assignment )
         $("#assignment2 input.name").val("Quiz")
         $("#assignment2 select.weight").val(30)
         $("#assignment2 select.grade").val(80)
 
-        $("#totals").before( Gradeshade.HTML.new_assignment )
+        $("#formTop").append( Gradeshade.HTML.new_assignment )
         $("#assignment3 input.name").val("Homework")
         $("#assignment3 select.weight").val(20)
         $("#assignment3 select.grade").val(75)
 
-        $("#totals").before( Gradeshade.HTML.new_assignment )
+        $("#formTop").append( Gradeshade.HTML.new_assignment )
         $("#assignment4 input.name").val("Participation")
         $("#assignment4 select.weight").val(10)
         $("#assignment4 select.grade").val(95)
@@ -422,22 +429,24 @@ Gradeshade.Examples = {
     onTheBubble: function() {
         Gradeshade.deleteAssignments()
         Gradeshade.Assignment.count = 0;
+        Gradeshade.deleteMode = false;
 
-        $("#totals").before( Gradeshade.HTML.new_assignment )
+        $("#formTop").append( Gradeshade.HTML.new_assignment )
         $("#assignment1 input.name").val("Final")
         $("#assignment1 select.weight").val(40)
         $("#assignment1 select.grade").val(89)
 
-        $("#totals").before( Gradeshade.HTML.new_assignment )
+        $("#formTop").append( Gradeshade.HTML.new_assignment )
         $("#assignment2 input.name").val("Quiz")
         $("#assignment2 select.weight").val(30)
         $("#assignment2 select.grade").val(89)
 
-        $("#totals").before( Gradeshade.HTML.new_assignment )
+        $("#formTop").append( Gradeshade.HTML.new_assignment )
         $("#assignment3 input.name").val("Homework")
         $("#assignment3 select.weight").val(20)
         $("#assignment3 select.grade").val(89)
 
+        $("#formTop").append( Gradeshade.HTML.new_assignment )
         $("#totals").before( Gradeshade.HTML.new_assignment )
         $("#assignment4 input.name").val("Participation")
         $("#assignment4 select.weight").val(10)
