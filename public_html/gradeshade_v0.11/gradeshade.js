@@ -275,7 +275,7 @@ Gradeshade.Graph = {
     Gradeshade.finish_basic_page = function() {
 
         $("#addButton").on( "click", function() {
-            $("#weightSumRow").prepend( Gradeshade.HTML.new_assignment )
+            $("#weightSumRow").before( Gradeshade.HTML.new_assignment )
             // $("#formTop").append( Gradeshade.HTML.new_assignment )
             $("input.name").last().focus()
             Gradeshade.draw()

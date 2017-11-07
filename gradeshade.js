@@ -131,7 +131,7 @@ Gradeshade.aboutHandler = function() {
 };
 
 Gradeshade.startOver = function() {
-  window.location= "./gradeshade.html"
+  window.location= "."
 }
 
 Gradeshade.HTML.deleteAssignment = function( obj ) { 
