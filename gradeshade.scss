@@ -11,6 +11,7 @@ button { background: none; border: none; }
 // ALL FONTS GO HERE
 body, input, button {  font-family: 'Rock Salt', cursive; }
 
+.warning { color: red; background-color: #fdd; }
 /******************************************************************************/
 /*********************************** HEADER ***********************************/
 /******************************************************************************/
@@ -86,7 +87,6 @@ nav {
   width: 1020px;
   height: 480px;
   margin: 0 auto;
-  // border: 1px solid black;
   border-radius: 20px;
   overflow: scroll;
 }
@@ -147,7 +147,15 @@ nav {
       border-radius: 50%;
     }
 
-  }
+    #weightSumRow {
+      font-weight: bold;
+    }
+
+    #weightSum { 
+      padding-left: 10px;
+      padding-right: -10px;
+    }
+  } // closes #formTop don't delete
 
   #formBottom {
     display: table;

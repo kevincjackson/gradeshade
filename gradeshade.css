@@ -13,6 +13,10 @@ button {
 body, input, button {
   font-family: 'Rock Salt', cursive; }
 
+.warning {
+  color: red;
+  background-color: #fdd; }
+
 /******************************************************************************/
 /*********************************** HEADER ***********************************/
 /******************************************************************************/
@@ -115,6 +119,11 @@ nav {
       color: white;
       background-color: red;
       border-radius: 50%; }
+    #form #formTop #weightSumRow {
+      font-weight: bold; }
+    #form #formTop #weightSum {
+      padding-left: 10px;
+      padding-right: -10px; }
   #form #formBottom {
     display: table;
     width: 500px;

@@ -275,7 +275,8 @@ Gradeshade.Graph = {
     Gradeshade.finish_basic_page = function() {
 
         $("#addButton").on( "click", function() {
-            $("#formTop").append( Gradeshade.HTML.new_assignment )
+            $("#weightSumRow").prepend( Gradeshade.HTML.new_assignment )
+            // $("#formTop").append( Gradeshade.HTML.new_assignment )
             $("input.name").last().focus()
             Gradeshade.draw()
         })
@@ -334,7 +335,8 @@ Gradeshade.Graph = {
             }
         })
 
-        $(".assignment *").each( function() {
+        // $(".assignment *").each( function() {
+        $(".name, .weight, .grade").each( function() {
             $(this).css("font-size", function() {
                 var num = $(this).parent().children(".weight").val()
                 var ret = Gradeshade.Assignment.weightedFont( num )
@@ -342,21 +344,18 @@ Gradeshade.Graph = {
             })
         })
 
-        // MAYBE
-        // TODO subtract from above instead of fixing right now...
-        $(".deleteButton").css("font-size", "10px")
+        // // Double check and delete
+        // $(".deleteButton").css("font-size", "10px")
 
         // DELETE MODE
         if (Gradeshade.deleteMode) {
-          $(".leftColumn").removeClass("leftColumnWide")
-          $(".leftColumn").addClass("leftColumnNarrow")
+          $(".leftColumn").removeClass("leftColumnWide").addClass("leftColumnNarrow")
           $(".deleteButton").show()
           $("#editUI").show()
           $("#normalUI").hide()
         }
         else {
-          $(".leftColumn").removeClass("leftColumnNarrow")
-          $(".leftColumn").addClass("leftColumnWide")
+          $(".leftColumn").removeClass("leftColumnNarrow").addClass("leftColumnWide")
           $(".deleteButton").hide()
           $("#editUI").hide()
           $("#normalUI").show()
@@ -402,22 +401,22 @@ Gradeshade.Examples = {
         Gradeshade.Assignment.count = 0;
         Gradeshade.deleteMode = false;
 
-        $("#formTop").append( Gradeshade.HTML.new_assignment )
+        $("#weightSumRow").before( Gradeshade.HTML.new_assignment )
         $("#assignment1 input.name").val("Final")
         $("#assignment1 select.weight").val(40)
         $("#assignment1 select.grade").val(85)
 
-        $("#formTop").append( Gradeshade.HTML.new_assignment )
+        $("#weightSumRow").before( Gradeshade.HTML.new_assignment )
         $("#assignment2 input.name").val("Quiz")
         $("#assignment2 select.weight").val(30)
         $("#assignment2 select.grade").val(80)
 
-        $("#formTop").append( Gradeshade.HTML.new_assignment )
+        $("#weightSumRow").before( Gradeshade.HTML.new_assignment )
         $("#assignment3 input.name").val("Homework")
         $("#assignment3 select.weight").val(20)
         $("#assignment3 select.grade").val(75)
 
-        $("#formTop").append( Gradeshade.HTML.new_assignment )
+        $("#weightSumRow").before( Gradeshade.HTML.new_assignment )
         $("#assignment4 input.name").val("Participation")
         $("#assignment4 select.weight").val(10)
         $("#assignment4 select.grade").val(95)
@@ -431,23 +430,22 @@ Gradeshade.Examples = {
         Gradeshade.Assignment.count = 0;
         Gradeshade.deleteMode = false;
 
-        $("#formTop").append( Gradeshade.HTML.new_assignment )
+        $("#weightSumRow").before( Gradeshade.HTML.new_assignment )
         $("#assignment1 input.name").val("Final")
         $("#assignment1 select.weight").val(40)
         $("#assignment1 select.grade").val(89)
 
-        $("#formTop").append( Gradeshade.HTML.new_assignment )
+        $("#weightSumRow").before( Gradeshade.HTML.new_assignment )
         $("#assignment2 input.name").val("Quiz")
         $("#assignment2 select.weight").val(30)
         $("#assignment2 select.grade").val(89)
 
-        $("#formTop").append( Gradeshade.HTML.new_assignment )
+        $("#weightSumRow").before( Gradeshade.HTML.new_assignment )
         $("#assignment3 input.name").val("Homework")
         $("#assignment3 select.weight").val(20)
         $("#assignment3 select.grade").val(89)
 
-        $("#formTop").append( Gradeshade.HTML.new_assignment )
-        $("#totals").before( Gradeshade.HTML.new_assignment )
+        $("#weightSumRow").before( Gradeshade.HTML.new_assignment )
         $("#assignment4 input.name").val("Participation")
         $("#assignment4 select.weight").val(10)
         $("#assignment4 select.grade").val(89)
