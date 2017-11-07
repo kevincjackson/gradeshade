@@ -131,7 +131,7 @@ Gradeshade.aboutHandler = function() {
 };
 
 Gradeshade.startOver = function() {
-  window.location= "./gradeshade.html"
+  window.location= "."
 }
 
 Gradeshade.HTML.deleteAssignment = function( obj ) { 
@@ -275,7 +275,7 @@ Gradeshade.Graph = {
     Gradeshade.finish_basic_page = function() {
 
         $("#addButton").on( "click", function() {
-            $("#weightSumRow").before( Gradeshade.HTML.new_assignment )
+            $("#weightSumRow").prepend( Gradeshade.HTML.new_assignment )
             // $("#formTop").append( Gradeshade.HTML.new_assignment )
             $("input.name").last().focus()
             Gradeshade.draw()
