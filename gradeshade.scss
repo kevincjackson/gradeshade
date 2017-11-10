@@ -2,8 +2,10 @@
 @import url('https://fonts.googleapis.com/css?family=Patrick+Hand+SC');
 
 // CONSTANTS
-// $grey: #DDD;
 $grey: #DDD;
+$aboutBG: hsl(2.56, 0.76%, 94.01%); 
+$formBG: hsl(5.13, 2.53%, 86.01%);
+$graphColor: #655d58;
 
 // RESETS
 * { margin: 0; padding: 0; } 
@@ -22,7 +24,7 @@ body, input, button {  font-family: 'Rock Salt', cursive; }
 /*********************************** HEADER ***********************************/
 /******************************************************************************/
 
-header {
+#pageHeader {
   background-color: black;
   color: white;
 
@@ -70,7 +72,7 @@ nav {
   display: none;
   padding: 0 20px 20px 20px;
   margin-bottom: 20px;
-  background-color: #EEE;
+  background-color: $aboutBG;
 
   h2 { text-align: center; }
   p { 
@@ -107,7 +109,7 @@ nav {
   width: 500px;
   height: 400px;
   overflow: scroll;
-  background-color: $grey;
+  background-color: $formBG;
   padding: 40px;
 }
 
@@ -120,27 +122,35 @@ nav {
     font-size: 1em;
   }
 
+  .leftColumnWide {
+    width: 240px;
+  }
+  .leftColumnNarrow {
+    width: 200px;
+  }
+  .middleColumn,
+  .rightColumn {
+    width: 110px;
+  }
+
+  .pointsRatio {
+    display: none;
+  }
+
+//////////////
+// FORM TOP
+//////////////
   #formTop {
-    height: 360px;
     background-color: white;
-    overflow: scroll;
-    padding: 0 10px;
     border-radius: 20px 20px 0 0;
+    padding: 0 10px;
+  }
 
-    .leftColumnWide {
-      width: 240px;
-    }
-    .leftColumnNarrow {
-      width: 200px;
-    }
-    .middleColumn,
-    .rightColumn {
-      width: 110px;
-    }
-
-    .pointsRatio {
-      display: none;
-    }
+  #formMiddle {
+    height: 320px;
+    overflow: scroll;
+    background-color: white;
+    padding: 0 10px;
 
     .deleteButton { 
       display: none;
@@ -153,15 +163,15 @@ nav {
       border-radius: 50%;
     }
 
-    #weightSumRow {
-      font-weight: bold;
+    #weightSumRow { 
+      font-weight: bold; 
     }
 
     #weightSum { 
       padding-left: 10px;
       padding-right: -10px;
     }
-  } // closes #formTop don't delete
+  } // closes #formMiddle don't delete
 
   #formBottom {
     display: table;
@@ -208,10 +218,9 @@ nav {
   width: 400px;
   height: 400px;
   overflow: scroll;
-  background-color: $grey;
+  background-color: $formBG;
   padding: 40px 40px 40px 0; // SHARES BORDER WITH FORM
 }
-
 
 #graph {
   position: relative;
@@ -220,10 +229,6 @@ nav {
   border: 4px solid black; 
   background-color: white;
 }
-
-
-// $bar: #695d54;
-$graphColor: #655d58;
 
 #graph div.bar {
   position: absolute;
@@ -238,3 +243,4 @@ $graphColor: #655d58;
   border-right: 1px solid white;
   overflow: scroll;
 }
+
