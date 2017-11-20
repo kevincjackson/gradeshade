@@ -375,7 +375,7 @@ Gradeshade.Graph = {
           Gradeshade.Assignments.weightedPointsPossibleSum()
         )
             
-        $("#gradeShadeSays").html( Gradeshade.Grade.present() )
+        $("#gradeCubeSays").html( Gradeshade.Grade.present() )
         
         // Graph
         Gradeshade.Graph.drawBoxes()

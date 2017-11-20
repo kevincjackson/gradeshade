@@ -157,7 +157,7 @@ Gradeshade.HTML.new_assignment = function() {
             <select class="weight middleColumn">
               <option value='0'>0</option><option value='5'>5</option><option value='10'>10</option><option value='15'>15</option><option value='20'>20</option><option value='25'>25</option><option value='30'>30</option><option value='35'>35</option><option value='40'>40</option><option value='45'>45</option><option value='50'>50</option><option value='55'>55</option><option value='60'>60</option><option value='65'>65</option><option value='70'>70</option><option value='75'>75</option><option value='80'>80</option><option value='85'>85</option><option value='90'>90</option><option value='95'>95</option><option value='100'>100</option>
             </select>
-            <select class="score rightColumn">
+            <select class="grade rightColumn">
               <option value=''></option>
               <option value='110'>110</option><option value='109'>109</option><option value='108'>108</option><option value='107'>107</option><option value='106'>106</option><option value='105'>105</option><option value='104'>104</option><option value='103'>103</option><option value='102'>102</option><option value='101'>101</option>
               <option value='100'>100</option><option value='99'>99</option><option value='98'>98</option><option value='97'>97</option><option value='96'>96</option><option value='95'>95</option><option value='94'>94</option><option value='93'>93</option><option value='92'>92</option><option value='91'>91</option>
@@ -179,9 +179,9 @@ Gradeshade.HTML.new_assignment = function() {
 }
 
 Gradeshade.HTML.pointsRatioPresent = function() {
-     var score = $(this).parent(".assignment").children(".score").val() || "?"
+     var grade = $(this).parent(".assignment").children(".grade").val() || "?"
      var weight = $(this).parent(".assignment").children(".weight").val()
-     var earned = Gradeshade.gradeWeighted( score, weight ) 
+     var earned = Gradeshade.gradeWeighted( grade, weight ) 
      earned = isNaN( earned ) ? "?" : earned
      // return "<sup>" + earned + "</sup>&frasl;<sub>" + weight + "</sub>"
      return earned + "<br>&mdash;<br>" + weight
@@ -193,7 +193,7 @@ Gradeshade.Graph = {
         var unit = $( "#graph" ).height();
         var name = $( assg ).children( "input.name").val();
         var width = $( assg ).children( "select.weight" ).val() * unit/100;
-        var height = $( assg ).children( "select.score" ).val() * unit/100;
+        var height = $( assg ).children( "select.grade" ).val() * unit/100;
         var pointsRatio = $( assg ).children( "span.pointsRatio" ).html()
         var barId = $( assg ).attr("id") + "_bar"
         var barHTML = '<div class="bar" '  + 'id=' + '"' + barId + '"' +  '></div>'
@@ -246,9 +246,9 @@ Gradeshade.Graph = {
 
     // -> Number or NaN
     Gradeshade.Assignment.earned = function( assig ) {
-        var score = $(assig).children(".score").val() || "?"
+        var grade = $(assig).children(".grade").val() || "?"
         var weight = $(assig).children(".weight").val()
-        var earned = Gradeshade.gradeWeighted( score, weight ) 
+        var earned = Gradeshade.gradeWeighted( grade, weight ) 
         var ret = parseFloat( earned )
         return ret
     }
@@ -336,7 +336,7 @@ Gradeshade.Graph = {
         })
 
         // $(".assignment *").each( function() {
-        $(".name, .weight, .score").each( function() {
+        $(".name, .weight, .grade").each( function() {
             $(this).css("font-size", function() {
                 var num = $(this).parent().children(".weight").val()
                 var ret = Gradeshade.Assignment.weightedFont( num )
@@ -375,7 +375,7 @@ Gradeshade.Graph = {
           Gradeshade.Assignments.weightedPointsPossibleSum()
         )
             
-        $("#gradeShadeSays").html( Gradeshade.Grade.present() )
+        $("#gradeCubeSays").html( Gradeshade.Grade.present() )
         
         // Graph
         Gradeshade.Graph.drawBoxes()
@@ -404,22 +404,22 @@ Gradeshade.Examples = {
         $("#weightSumRow").before( Gradeshade.HTML.new_assignment )
         $("#assignment1 input.name").val("Final")
         $("#assignment1 select.weight").val(40)
-        $("#assignment1 select.score").val(85)
+        $("#assignment1 select.grade").val(85)
 
         $("#weightSumRow").before( Gradeshade.HTML.new_assignment )
         $("#assignment2 input.name").val("Quiz")
         $("#assignment2 select.weight").val(30)
-        $("#assignment2 select.score").val(80)
+        $("#assignment2 select.grade").val(80)
 
         $("#weightSumRow").before( Gradeshade.HTML.new_assignment )
         $("#assignment3 input.name").val("Homework")
         $("#assignment3 select.weight").val(20)
-        $("#assignment3 select.score").val(75)
+        $("#assignment3 select.grade").val(75)
 
         $("#weightSumRow").before( Gradeshade.HTML.new_assignment )
         $("#assignment4 input.name").val("Participation")
         $("#assignment4 select.weight").val(10)
-        $("#assignment4 select.score").val(95)
+        $("#assignment4 select.grade").val(95)
 
         Gradeshade.draw()
     },
@@ -433,22 +433,22 @@ Gradeshade.Examples = {
         $("#weightSumRow").before( Gradeshade.HTML.new_assignment )
         $("#assignment1 input.name").val("Final")
         $("#assignment1 select.weight").val(40)
-        $("#assignment1 select.score").val(89)
+        $("#assignment1 select.grade").val(89)
 
         $("#weightSumRow").before( Gradeshade.HTML.new_assignment )
         $("#assignment2 input.name").val("Quiz")
         $("#assignment2 select.weight").val(30)
-        $("#assignment2 select.score").val(89)
+        $("#assignment2 select.grade").val(89)
 
         $("#weightSumRow").before( Gradeshade.HTML.new_assignment )
         $("#assignment3 input.name").val("Homework")
         $("#assignment3 select.weight").val(20)
-        $("#assignment3 select.score").val(89)
+        $("#assignment3 select.grade").val(89)
 
         $("#weightSumRow").before( Gradeshade.HTML.new_assignment )
         $("#assignment4 input.name").val("Participation")
         $("#assignment4 select.weight").val(10)
-        $("#assignment4 select.score").val(89)
+        $("#assignment4 select.grade").val(89)
 
         Gradeshade.draw()
     }

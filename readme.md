@@ -4,9 +4,8 @@
 * Refactor: missing actual Model layer.
 
 ## Feature Requests
-1. Change grade to score
-2. Move class Grade to bottom (people can't see it).
-3. Animate Grade change.
+1. Animate Grade change.
+2. Fix font bug.
 * Autofill for assignments using current words + essays, paper, report
 * Add feature to add category: pinned weight with sub-assignments.
   *  Example
