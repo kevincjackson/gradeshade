@@ -1,4 +1,19 @@
-## Structure
+# Gradeshade
+
+A web app to visualize your grades.
+
+- What grade do I need to...?
+- What grade do I have in...?
+
+Use Gradeshade!
+
+## Website
+
+<http://gradeshade.com>
+
+## Developer Notes
+
+### Structure
 
 ```
 User
@@ -29,12 +44,12 @@ Item
   max: Number
 
 Grade
-  percentage(points, max)
-  grade(percentage)
-  to_s()
+  constructor(points, max)
+  percentage: Number
+  pct: String
+  letter: String
+  grade: String
 ```
-
-## Research
 
 ### Grade Portals
 
@@ -43,16 +58,16 @@ Grade
 - PowerSchool
 - Schoology
 
-## TODO
+### TODO
 
-- Add testing.
-- Refactor: delete unused code.
-- Refactor: missing actual Model layer.
+- IP Add testing.
+- IP Rebuild: to React.
+- IP Refactor: missing actual Model layer.
 
-## Feature Requests
+### Feature Requests
 
 - Animate Grade change.
-- Autofill for assignments using current words + essays, paper, report
+- Autocomplete for assignments using current words + essays, paper, report
 - Add feature to add category: pinned weight with sub-assignments.
   - Example
   - Quiz, Weight 20, always adds to 20 regardless of subquizes
