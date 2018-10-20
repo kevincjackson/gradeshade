@@ -1,19 +1,51 @@
 # Gradeshade
 
-A web app to visualize your grades.
+## Description
 
-- What grade do I need to...?
-- What grade do I have in...?
+**A grade visualization tool.**
 
-Use Gradeshade!
+Students can track and visualize their grades.
+Students can see what grade they need to improve.
+Teachers can demonstrate averages and weighting.
 
-## Website
+## Quick Examples
 
-<http://gradeshade.com>
+(Screenshot)
 
-## Developer Notes
+```
+--------------------
+           User Info
+--------------------
+About       Examples
+--------------------
+    Klass Info
+--------------------
+   Category Info
+--------------------
+     Item Info
+--------------------
+             Grade
+  +--------------+
+  |              |
+  |              |
+  |              |
+  |    Graph     |
+  |              |
+  |              |
+  |              |
+  +--------------+
+          See Math
+--------------------
+       Legal
+```
 
-### Structure
+## Quick start
+
+<http://www.gradeshade.com>
+
+## Documentation
+
+### Data Definition
 
 ```
 User
@@ -22,57 +54,82 @@ User
   hash: String
   klasses: [Klass]
 
-Klass
-  name: String
-  categories_use_weights: True || False
-  categories: [Category]
-  ---
-  points()
-  max()
+Klass: Enumeration
+  Klass With Weighted Categories
+  Klass With Unweighted Categories
 
-Category
+Klass With Weighted Categories
   name: String
-  weight: Number || NULL
+  categories: [Weighted Category]
+  ---
+  points() -> Number
+  max() -> Number
+
+Klass With Unweighted Categories
+  name: String
+  categories: [Unweighted Category]
+  ---
+  points() -> Number
+  max() -> Number
+
+Weighted Category
+  name: String
+  weight: Number (0 - 100)
   items: [Item]
   ---
-  points()
-  max()
+  points() -> Number
+  max() -> Number
+
+Unweighted Category
+  name: String
+  effective_weight: Number(0 - 100)
+  items: [Item]
+  ---
+  points() -> Number
+  max() -> Number
 
 Item
   name: String
   points: Number
   max: Number
+  date: Date || NULL
 
 Grade
-  constructor(points, max)
+  constructor(points, max, gradeFunction) -> Grade
   percentage: Number
-  pct: String
   letter: String
   grade: String
+
+Helpers
+  percentageToGrade(percentage) -> String
+  percentageToString(percentage) -> String
 ```
 
-### Grade Portals
+Will live at <http://gradeshade.com/docs>
 
-- Aeries
-- Illuminate
-- PowerSchool
-- Schoology
-
-### TODO
-
-- IP Add testing.
-- IP Rebuild: to React.
-- IP Refactor: missing actual Model layer.
+## Project organization
 
 ### Feature Requests
 
-- Animate Grade change.
-- Autocomplete for assignments using current words + essays, paper, report
-- Add feature to add category: pinned weight with sub-assignments.
-  - Example
-  - Quiz, Weight 20, always adds to 20 regardless of subquizes
-    - Quiz 1
-    - Quiz 2
-    - Quiz 3
-- Add feature to answer question: what grade do I need?
-- Add ability to save work.
+- Grade changes animate
+- Autocomplete for categories:
+  current words + essays, paper, report
+- Answer what grade do I need?
+- Save info
+
+### Contributing
+
+Email me below.
+
+### Bug Report
+
+Email me below.
+
+### Author
+
+[Kevin Jackson](mailto:kj31428@gmail.com)
+
+## Legal Notes
+
+License: MIT
+Copyright: 2017 - Present
