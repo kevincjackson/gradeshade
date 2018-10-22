@@ -14,17 +14,14 @@ Teachers can demonstrate averages and weighting.
 
 ```
 --------------------
-           User Info
+GS              User
 --------------------
-About       Examples
+     Gradeshade
 --------------------
-    Klass Info
+Menu
 --------------------
-   Category Info
---------------------
-     Item Info
---------------------
-             Grade
+  Klass      Grade
+    +-ie
   +--------------+
   |              |
   |              |
@@ -32,9 +29,9 @@ About       Examples
   |    Graph     |
   |              |
   |              |
-  |              |
-  +--------------+
-          See Math
+  |  Cat / Item  |
+  +--------------+  Cat / Item Workspace
+                f   Possible Range
 --------------------
        Legal
 ```
@@ -44,6 +41,26 @@ About       Examples
 <http://www.gradeshade.com>
 
 ## Documentation
+
+### Sitemap
+
+```
+  User
+    signin
+      signout
+    signup
+  Menu
+    Quickstart
+    Docs
+    Understanding Weights
+    Examples
+  Graph
+    Klass
+      Category
+        Item
+  Legal
+  Sitemap
+```
 
 ### Data Definition
 
