@@ -10,16 +10,29 @@ Teachers can demonstrate averages and weighting.
 
 ## Quick Examples
 
-(Screenshot)
+## Quick start
+
+<http://www.gradeshade.com>
+
+## Documentation
+
+### Roadmap
+
+- Main UI Elements
+- Teaching tool
+- Graph
+- Users
+
+### Screenshot
 
 ```
 --------------------
-GS              User
+GS              User   Header
 --------------------
-     Gradeshade
+     Gradeshade        Title
 --------------------
-Menu
---------------------
+Menu                   Content
+  ----------------
   Klass      Grade
     +-ie
   +--------------+
@@ -33,14 +46,8 @@ Menu
   +--------------+  Cat / Item Workspace
                 f   Possible Range
 --------------------
-       Legal
+       Legal           Footer
 ```
-
-## Quick start
-
-<http://www.gradeshade.com>
-
-## Documentation
 
 ### Sitemap
 
@@ -50,14 +57,14 @@ Menu
       signout
     signup
   Menu
+    Graph
+      Klass
+        Category
+          Item
     Quickstart
     Docs
     Understanding Weights
     Examples
-  Graph
-    Klass
-      Category
-        Item
   Legal
   Sitemap
 ```

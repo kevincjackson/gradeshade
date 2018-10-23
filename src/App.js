@@ -1,24 +1,35 @@
 import React, { Component } from "react";
 import "./App.css";
-import ItemList from "./ItemList";
+import Header from "./Header";
+import Title from "./Title";
+import Content from "./Content";
+import Footer from "./Footer";
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      items: [
-        { name: "a", points: 10, max: 11 },
-        { name: "a", points: 20, max: 22 },
-        { name: "a", points: 30, max: 33 }
-      ]
+      route: "graph"
     };
   }
+
+  onRouteChange = route => {
+    if (route === "home") {
+      this.setState({ route: "graph" });
+    } else {
+      this.setState({ route });
+    }
+  };
 
   render() {
     return (
       <div className="App">
-        <header className="header">Gradeshade</header>
-        <ItemList items={this.state.items} />
+        <Header onRouteChange={this.onRouteChange} />
+        <Title />
+        <Content route={this.state.route} onRouteChange={this.onRouteChange} />
+        <div className="mv4">
+          <Footer onRouteChange={this.onRouteChange} />
+        </div>
       </div>
     );
   }
