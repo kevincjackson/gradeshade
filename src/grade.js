@@ -2,10 +2,13 @@ class Grade {
   constructor(points, max) {
     this.points = points;
     this.max = max;
-    this.percentage = (points / max) * 100;
+    this.percentage = (points / max) * 100 || 0;
     this.percentageString = `${this.percentage.toFixed(2)}%`;
     this.letter = Grade.letterize(this.percentage);
-    this.grade = `${this.letter} (${this.percentage.toFixed(2)}%)`;
+    this.isValid = (parseFloat(points) || points === 0) && parseFloat(max);
+    this.grade = this.isValid
+      ? `${this.letter} (${this.percentage.toFixed(2)}%)`
+      : "?";
   }
 
   toString() {
@@ -43,4 +46,4 @@ class Grade {
   }
 }
 
-module.exports = Grade;
+export default Grade;
