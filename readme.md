@@ -78,35 +78,19 @@ User
   hash: String
   klasses: [Klass]
 
-Klass: Enumeration
-  Klass With Weighted Categories
-  Klass With Unweighted Categories
-
-Klass With Weighted Categories
+Klass
   name: String
+  uses_weights: Bool
   categories: [Weighted Category]
+  points: Number
+  max: Number
   ---
-  points() -> Number
-  max() -> Number
+  getPoints() -> Number
+  getMax() -> Number
 
-Klass With Unweighted Categories
+Category
   name: String
-  categories: [Unweighted Category]
-  ---
-  points() -> Number
-  max() -> Number
-
-Weighted Category
-  name: String
-  weight: Number (0 - 100)
-  items: [Item]
-  ---
-  points() -> Number
-  max() -> Number
-
-Unweighted Category
-  name: String
-  effective_weight: Number(0 - 100)
+  weight: Number (0 - 100) | undefined
   items: [Item]
   ---
   points() -> Number
@@ -116,17 +100,16 @@ Item
   name: String
   points: Number
   max: Number
-  date: Date || NULL
+  date: Date || null
 
 Grade
   constructor(points, max, gradeFunction) -> Grade
-  percentage: Number
-  letter: String
-  grade: String
-
-Helpers
-  percentageToGrade(percentage) -> String
-  percentageToString(percentage) -> String
+  ::letterize(percentage) -> String // "95.00%"
+  percentage: Number                // 95.00
+  percentageString: String          // "95.00%"
+  letter: String                    // "A"
+  grade: String                     // "A (95.00%)"
+  toString() -> String              // "A (95.00%)"
 ```
 
 Will live at <http://gradeshade.com/docs>

@@ -3,7 +3,7 @@ class Grade {
     this.points = points;
     this.max = max;
     this.percentage = (points / max) * 100;
-    this.pct = `${this.percentage.toFixed(2)}%`;
+    this.percentageString = `${this.percentage.toFixed(2)}%`;
     this.letter = Grade.letterize(this.percentage);
     this.grade = `${this.letter} (${this.percentage.toFixed(2)}%)`;
   }
@@ -43,4 +43,4 @@ class Grade {
   }
 }
 
-export default Grade;
+module.exports = Grade;
